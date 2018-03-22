@@ -1,0 +1,141 @@
+<%include ../layout/headerList.ejs %>
+
+<html>
+
+
+
+<body>
+    <!-- start header -->
+    <div id="header">
+        <div id="header-container">
+            <a href="home.html" id="logo">
+                <img src="../img/ka.png" alt="logo" width="70" height="70" />
+            </a>
+            <input  type="text" placeholder="search"/>
+            <ul>
+                <li>
+                    <a href="home.html">Home</a>
+                </li>
+                <li>
+                    <a href="products.html">MY Orders</a>
+                </li>
+
+                <li>
+                    <a href="register.html"><%= user %></a>
+                </li>
+                <li>
+                    <a href="register.html">
+                        <img class="profImg" src="../img/min3.jpg" />
+                    </a>
+                </li>
+                <li>
+                    <a href="register.html" class="sign">Logout</a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+    <!-- end header -->
+
+
+
+    <!-- start content-->
+    <div id="contact">
+        <div id="content-container">
+
+            <div class="homeL">
+                <form>
+                    <p class="resrv">Table Reservation</p>
+                    <div class="table-resrv">
+                    </div>
+                    <br/><br/>
+                    <label>Note</label>
+                    <br/>
+                    <textarea></textarea>
+                    <br>
+                    <label>Room</label>
+                    <select>
+                        <option value="room1" selected>room1</option>
+                        <option value="lec">room2</option>
+                        <option value="conference">room3</option>
+                  
+                    </select>
+                    <br />
+                    <hr />
+                    <br />
+                     <div class="table-count">
+                <span > Total : <span  class="gettotal"  style="margin-left:55%;">0</span>EGP</span>
+           </div>
+                    <br />
+                    <input type="submit" value="confirm" class="btn-confirm" />
+                </form>
+            </div>
+            <div class="homeR">
+            
+                <br />
+                <div class="orderPrice" >
+                        <div class="table-right"></div>
+                        <% resultsmeal.forEach(function (meals) {%>
+        
+                            <button class="btn-coffe" name="<%= meals.name %>"  price=" <%= meals.price %>">
+                                <p><%= meals.name %>  <br/><%= meals.price %> EGP</p>
+                                <img class="profImg" src="../img/ka.png"  style="width:100px"/></i>
+                 
+                             </button>
+                 
+                            <%})%>
+                 
+                               
+                        <br />
+                        
+                        </div>
+                </div>
+                 </div>
+
+
+
+
+
+
+            </div>
+
+        </div>
+
+        <!-- start content-->
+
+
+
+
+
+
+
+
+        <!-- start footer -->
+        <div id="footer">
+            <div id="footer-container">
+                <ul>
+                    <li>
+                        <a href="#">
+                            <img src="../img/fb.png" />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="../img/g.png" />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="../img/tw.png" />
+                        </a>
+                    </li>
+                    
+                </ul>
+                <p>&copy; group1 nodejs project</p>
+            </div>
+        </div>
+        <!-- end footer -->
+</body>
+
+</html>
+<%include ../layout/footerList.ejs %>
