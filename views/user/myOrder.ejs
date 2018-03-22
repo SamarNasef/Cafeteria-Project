@@ -1,0 +1,127 @@
+<html>
+<head>
+<title>My Orders</title>
+<style>
+    #compDiv{
+        border: 2px black solid;
+        width:600px;
+    }
+</style>
+<script src="http://code.jquery.com/jquery-1.6.2.min.js"></script> 
+<script type="text/javascript">
+$(function(){	
+
+function createTable(data){
+    total = 0;
+    var OrdersTable = `
+        <table border=1 id="ordersTbl">
+            <tr>
+                <th>orderDate</th>
+                <th>status</th>
+                <th>amount</th>
+                <th>action</th>
+            </tr>
+        `;
+    data.forEach(function(order,index){
+        total += parseInt(order.amount);
+        OrdersTable += `<tr>  
+            <td>`+ order.orderDate+` <button value="`+order.orderDate+`">+</button></td>
+            <td>`+ order.status+`</td>
+            <td>`+ order.amount+` EGP</td>
+            <td>`+ order.action+`</td>
+            </tr>`;
+      })
+    OrdersTable+=`</table>`;
+        
+    return OrdersTable;
+}
+function createDiv(componentArr){
+    var componentDiv = `<div id="compDiv">`;
+    componentArr.forEach(function(component){
+        componentDiv+=`<img src="/img/`+component.proimg+`" width="100" height="100">`;
+        componentDiv+=``+component.proname+`: `;
+        componentDiv+=`price`+component.price+`. `;
+    })  
+    componentDiv+=`</div>`;
+    return componentDiv;
+}
+
+$('#submitBtn').click(function(e){
+    e.preventDefault();
+    var data = {};
+    data.dateFrom = document.getElementById("dateFrom").value;
+    data.dateTo = document.getElementById("dateTo").value;
+    $.ajax({
+        type: 'GET',
+        data: data,
+        contentType: 'application/json',
+        url: 'http://localhost:9090/myOrders/search',						
+        success: function(res) {
+            $("#ordersTbl").remove();
+            var tableData =  createTable(res); 
+            $('#OrdersDiv').append( tableData);
+            $('button').click(function(e){
+                var btnText = e.currentTarget.innerText;
+                var date = {};
+                date.orderDate=e.target.attributes.value.value;
+                if(btnText == "+"){
+                $.ajax({
+                    type: 'GET',
+                    data: date,
+                    contentType: 'application/json',
+                    url: 'http://localhost:9090/myOrders/component',						
+                    success: function(res) {
+                        console.log(res);
+                        e.currentTarget.innerText="-";
+                        var comp={};
+                        comp.name=res[0].component;
+                        $.ajax({
+                            type: 'GET',
+                            data: comp,
+                            contentType: 'application/json',
+                            url: 'http://localhost:9090/myOrders/componentDetails',						
+                            success: function(res) {
+                                console.log(res);
+                                $("#compDiv").remove();
+                        var orderComponent=createDiv(res);
+                        $('#ComponentDiv').append(orderComponent);
+
+                            }})
+                        
+                        
+                        
+                }});
+                }else{
+                e.currentTarget.innerText="+";
+                $("#compDiv").remove();
+                }
+            });
+            $("#Total").text("Total : "+total);
+        }
+    });    
+});				
+});
+   
+</script>
+</head>
+<body>    
+        <a href="/orderUser/">Home </a> | 
+        <a href="/myOrders/myOrder">My Orders </a>  
+        <br>
+        <h5> welcome <%=username%> </h5>
+<h1>My orders</h1>
+
+    <%if(msg !=''){%>
+        <h3><%=msg%></h3>
+    <%}%>
+ 
+    <form method="get" >
+        date from<input id="dateFrom" type="date" name="datefrom" > 
+        date to<input  id="dateTo" type="date" name="dateto" > 
+        <input id="submitBtn" type="submit" value="search">
+    </form>
+    <div id="OrdersDiv"></div>
+    <div id="ComponentDiv"></div>
+    <h3 id="Total"></h3> 
+    
+<%include ../layout/footer.ejs%>    

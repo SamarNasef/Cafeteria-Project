@@ -1,0 +1,14 @@
+<html>
+<head>
+<title></title>
+</head>
+<body>
+  <%if(msg){%>
+    <h1><%=msg%></h1>
+  <%}%>
+  <form method="post" action="/auth/login">
+    <input type ="text" name="username" >
+    <input type="password" name="password">
+    <input type="submit" value="login">
+   </form>
+   <%include ../layout/footer.ejs%>
