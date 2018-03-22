@@ -1,0 +1,221 @@
+@media(max-width:308px){
+    
+    body{
+        width:308px;
+    }
+    .header{
+        width:308px;
+    }
+    .mother{
+        padding-top:95px;
+        padding-left:64px; 
+    }
+    .web{
+        
+        margin-left:25px;
+        width:250px;
+    }
+    .signle{
+        margin-top:50px;
+        margin-left:220px;
+    }
+}
+    
+@media (min-width:309px) and (max-width:508px){
+    
+    body{
+        width:508px;
+    }
+    
+    /**header**/
+    
+    .header{
+        width:508px;
+        height:600px;
+    }
+    .mother{
+        padding-top:55px;
+        padding-left:150px; 
+    }
+    .web{
+        
+        margin-left:85px;
+    }
+    .signle{
+        margin-top:120px;
+        margin-left:225px;
+    }
+    .line{
+        height:140px;
+    }
+    /**about me **/
+    .aboutme0
+    {
+        width:508px;
+        height:330px;
+    }
+    .continer1{
+       	width:508px;
+        margin:auto;
+        padding-top:76px; 
+    }
+
+    .about
+    {
+        width:350px;
+        height:165px; 
+        padding-top:12px;
+        padding-left:15px; 
+        margin-left:65px;
+    }
+    .n0, .n3, .n1, .n4, .n2
+    {
+        display:block; 
+        margin-bottom:4px;
+        font-family: arial;
+        font-size:17px; 
+         margin-left:10px;
+        color:#fff; 
+    }
+    .n2{
+        word-spacing:2px; 
+    }
+    .line1
+    {
+        padding-left:230px;
+        height:100px;
+    
+    }
+
+    
+    
+    /**End aboutme**/
+    /**start courses**/
+    .courses
+    {
+        width:508px;
+        height:400px; 
+    }
+    .continer2{
+       	width:508px;
+        margin:auto;
+        padding-top:25px;
+        padding-right:206px;
+    }
+
+    .linecours
+    {
+        width: 450px;
+        margin-left:15px;
+
+    }
+    .boxcours{
+        margin-left:135px;
+        height: 35px;
+        width: 200px;
+        border-left:1px solid #fff;
+        border-right:1px solid #fff;            
+        text-align: center;
+        padding-top:15px; 
+        background-color:#ea185f;
+        opacity:0.4; 
+    }
+    .namecours
+    {
+        margin-top:0px;
+        margin-bottom:0px;
+         color:#fff; 
+    }
+    .linecours1
+    {
+        width: 300px;
+        margin-left:86px;
+        margin-right:0px; 
+
+    }
+    .line2
+    {
+        padding-left:230px;
+        height:50px;
+    
+    }
+    .Exp
+    {
+        margin-left:110px;
+        height:230px;
+        width: 250px;
+        border:2px solid #fff;
+        border-left:none;
+        border-right:none;
+        border-radius:2px;
+        background-color:#3baeab;
+        
+    }
+    .Exp_one
+    {
+        width:50%;
+        float:left; 
+        padding-top:25px; 
+    }
+    .Exp_two
+    {
+          padding-top:25px; 
+    }
+
+    .Exp_one>span, .Exp_two>span
+    {
+        display:inline-block;
+        
+        margin-bottom:35px; 
+    }
+
+    .line3
+    {
+        padding-left:230px;
+        height:37px;
+    
+    }
+
+    
+}
+
+
+
+
+
+/**for mob and tablet **/
+
+
+@media (min-width:509px) and (max-width:767px){
+    
+    body{
+        margin-right:0px; 
+        width: 767px;
+    }
+    .continer{
+         margin-right:0px; 
+    }
+    .header{
+        width:767px;
+        height:600px;
+              
+    }
+    .mother{
+        padding-left:275px;
+        padding-top:55px;
+    }
+    .web{
+        width:300px;
+        margin-left:209px;
+    }
+    .signle{
+        margin-top:90px;
+        margin-left:347px;
+    }
+}
+
+    
+    
+    
+    
+    

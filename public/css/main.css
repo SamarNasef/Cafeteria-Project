@@ -1,0 +1,8 @@
+body{
+    
+    outline: none;
+    -moz-user-select: none;
+    user-focus: none;
+    user-select: none;
+}
+
