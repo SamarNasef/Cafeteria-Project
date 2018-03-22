@@ -11,6 +11,10 @@ var checksRoutes=require('./controllers/Checks');
 var orderAdminRoutes=require('./controllers/OrderAdmin');
 var orderUserRoutes=require('./controllers/OrderUser');
 var productsRoutes=require('./controllers/Products');
+var userRoutes=require('./controllers/user');
+var mongodb = require('mongodb').MongoClient;
+var url = 'mongodb://localhost:27017/cafeDB';
+
 
 
 var session=require('express-session');
@@ -21,6 +25,7 @@ require('./models/products');
 require('./models/users');
 require('./models/orders'); 
 require('./models/categories');
+require('./models/insert');
 
 server.use(express.static("public"));
 mongoose.connect('mongodb://localhost:27017/cafeDB');
@@ -60,6 +65,7 @@ server.use('/checks',checksRoutes);
 server.use('/orderAdmin',orderAdminRoutes);
 server.use('/orderUser',orderUserRoutes);
 server.use('/products',productsRoutes);
+server.use('/user',userRoutes);
 
  server.set('view engine','ejs');
  server.set('views','./views');
@@ -70,3 +76,7 @@ server.use('/products',productsRoutes);
 server.listen (9090,function(){
   console.log("starting....");
 });
+
+
+
+
