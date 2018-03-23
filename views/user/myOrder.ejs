@@ -1,12 +1,12 @@
 <html>
 <head>
 <title>My Orders</title>
-<style>
+<!--<style>
     #compDiv{
         border: 2px black solid;
         width:600px;
     }
-</style>
+</style>-->
 <script src="http://code.jquery.com/jquery-1.6.2.min.js"></script> 
 <script type="text/javascript">
 $(function(){	
@@ -14,7 +14,7 @@ $(function(){
 function createTable(data){
     total = 0;
     var OrdersTable = `
-        <table border=1 id="ordersTbl">
+        <table border=1 id="ordersTbl" class="search">
             <tr>
                 <th>orderDate</th>
                 <th>status</th>
@@ -23,11 +23,11 @@ function createTable(data){
             </tr>
         `;
     data.forEach(function(order,index){
-        total += parseInt(order.amount);
+        total += parseInt(order.totalPrice);
         OrdersTable += `<tr>  
             <td>`+ order.orderDate+` <button value="`+order.orderDate+`">+</button></td>
             <td>`+ order.status+`</td>
-            <td>`+ order.amount+` EGP</td>
+            <td>`+ order.totalPrice+` LE</td>
             <td>`+ order.action+`</td>
             </tr>`;
       })
@@ -35,14 +35,21 @@ function createTable(data){
         
     return OrdersTable;
 }
-function createDiv(componentArr){
+function createDiv(componentsArr){
+    console.log("comp arr:",componentsArr);
     var componentDiv = `<div id="compDiv">`;
-    componentArr.forEach(function(component){
-        componentDiv+=`<img src="/img/`+component.proimg+`" width="100" height="100">`;
-        componentDiv+=``+component.proname+`: `;
-        componentDiv+=`price`+component.price+`. `;
-    })  
+    for(var i=1;i<componentsArr.length;i++){
+        console.log("i: ",i," : ",componentsArr[i]);
+        componentDiv += `<div class="component">`;
+        componentDiv+=`<h5>`+componentsArr[i].name+`</h5>`;
+        componentDiv+=`<p>`+componentsArr[i].price+` LE</p>`;
+        componentDiv+=`<img src="/img/`+componentsArr[i].image+`" width="100" height="100">`;
+        componentDiv+=`<p>`+componentsArr[0][i-1].number+`<p>`;
+        componentDiv+=`</div>`;
+    }
     componentDiv+=`</div>`;
+    
+    
     return componentDiv;
 }
 
@@ -71,23 +78,12 @@ $('#submitBtn').click(function(e){
                     contentType: 'application/json',
                     url: 'http://localhost:9090/myOrders/component',						
                     success: function(res) {
-                        console.log(res);
+                        //console.log("comp ajax",res);
                         e.currentTarget.innerText="-";
-                        var comp={};
-                        comp.name=res[0].component;
-                        $.ajax({
-                            type: 'GET',
-                            data: comp,
-                            contentType: 'application/json',
-                            url: 'http://localhost:9090/myOrders/componentDetails',						
-                            success: function(res) {
-                                console.log(res);
-                                $("#compDiv").remove();
+      
+                       $("#compDiv").remove();
                         var orderComponent=createDiv(res);
                         $('#ComponentDiv').append(orderComponent);
-
-                            }})
-                        
                         
                         
                 }});
@@ -96,32 +92,64 @@ $('#submitBtn').click(function(e){
                 $("#compDiv").remove();
                 }
             });
-            $("#Total").text("Total : "+total);
+            $("#Total").text("Total : "+total+"  LE");
         }
     });    
 });				
 });
    
 </script>
+<link rel="stylesheet" href="/css/style1.css">
+ <link rel="stylesheet" href="/css/myOrderStyle.css">
 </head>
-<body>    
-        <a href="/orderUser/">Home </a> | 
-        <a href="/myOrders/myOrder">My Orders </a>  
-        <br>
-        <h5> welcome <%=username%> </h5>
+<body>
+    
+    <!-- start header -->
+    <div id="header">
+            <div id="header-container">
+                <a href="/orderUser/" id="logo">
+                    <img src="../img/ka.png" alt="logo" width="70" height="70" />
+                </a>
+                <input  type="text" placeholder="search"/>
+                <ul>
+                    <li>
+                        <a href="/orderUser/">Home</a>
+                    </li>
+                    <li>
+                        <a href="/myOrders/myOrder">MY Orders</a>
+                    </li>
+    
+                    <li>
+                        <a href=""><%=username%></a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <img class="profImg" src="../img/min3.jpg" />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="sign">Logout</a>
+                    </li>
+    
+                </ul>
+            </div>
+        </div>
+        <!-- end header -->
+    
+        
 <h1>My orders</h1>
 
     <%if(msg !=''){%>
         <h3><%=msg%></h3>
     <%}%>
  
-    <form method="get" >
-        date from<input id="dateFrom" type="date" name="datefrom" > 
-        date to<input  id="dateTo" type="date" name="dateto" > 
+    <form method="get" class="search" >
+        <label>Date From </label><input id="dateFrom" type="date" name="datefrom" value="2018-02-11">&nbsp;&nbsp;&nbsp; 
+        <label>Date To </label><input  id="dateTo" type="date" name="dateto" value="2018-02-16"> &nbsp;&nbsp;&nbsp;
         <input id="submitBtn" type="submit" value="search">
-    </form>
-    <div id="OrdersDiv"></div>
-    <div id="ComponentDiv"></div>
+    </form><br>
+    <div id="OrdersDiv"></div><br>
+    <div id="ComponentDiv"></div><br>
     <h3 id="Total"></h3> 
-    
+
 <%include ../layout/footer.ejs%>    

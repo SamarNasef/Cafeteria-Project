@@ -21,6 +21,7 @@ router.post('/login',bodyParserMid,function(req,resp){
     req.session.username="samar";
     req.session.password="123";
     resp.redirect('/orderUser/');
+    //resp.redirect('/user/list');
     console.log( req.session.username);
   }else if(username=="admin" && password=="123"){
     req.session.username="admin";

@@ -14,6 +14,7 @@ router.get('/lists',function(req,resp){
 router.get('/list',function(req,resp){
     var username = "Eman";//req.body.username;
     mongodb.connect(url,function (err,db) {
+        resp.render('users/list');
 
         if (err) {
             throw err;

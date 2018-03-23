@@ -1,0 +1,60 @@
+.search{
+    border: 1px solid #dfdada ;
+    width: 700px;
+    height: 80px;
+    padding: 10px;
+    margin: auto;
+    margin-bottom: 15px;
+    background-color: #303030;
+    box-shadow: 5px 10px 8px 10px #888888;
+}
+.search input[type='date']{
+    color: #9f6060;
+
+}
+.search input[type='submit']{
+    width: 80px;
+    margin: 32px 0 ;
+    background-color:	#9f6060;
+    height: 40px;
+    color: #fff;
+font-size: 20px;
+border:0;
+border-radius: 7px;
+
+}
+#ordersTbl{
+    color: white;
+}
+#ordersTbl button{
+    width: 50px;
+    margin-left: 10px;
+    background-color:	#9f6060;
+    height: 30px;
+    color: #fff;
+font-size: 20px;
+border-radius: 7px;
+
+}
+.component{
+    display: inline-block;
+    margin: 10px;
+}
+.component p , .component h5{
+    text-align: center;
+}
+#compDiv{
+    
+    border: 1px solid #dfdada ;
+    width: 700px;
+    padding: 10px;
+    margin: auto;
+    margin-bottom: 15px;
+    background-color: #303030;
+    box-shadow: 5px 10px 8px 10px #888888;
+
+}
+h3{
+    color: #9f6060;
+    text-align: center;
+}
